@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1493732940 source:d:\cris\sielach cristian\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	"estacionamiento.h"
+
+1493730005 d:\cris\sielach cristian\biblio.h
+
+1493670130 d:\cris\sielach cristian\utn.h
+
+1493670130 source:d:\cris\sielach cristian\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"utn.h"
+
+1493732489 source:d:\cris\sielach cristian\biblio.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"utn.h"
+	"Biblio.h"
+
+1493733002 source:d:\cris\sielach cristian\estacionamiento.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"Estacionamiento.h"
+
+1493732666 d:\cris\sielach cristian\estacionamiento.h
+
