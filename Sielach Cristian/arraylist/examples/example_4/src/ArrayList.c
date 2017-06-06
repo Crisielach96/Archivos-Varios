@@ -73,12 +73,13 @@ int al_add(ArrayList* pList,void* pElement)
     int tam;
     void* aux;
     int flag=1;
+
+
     if(pList != NULL && pElement != NULL)
     {
         if(pList->size==pList->reservedSize)
         {
             aux=realloc(pList->pElements,sizeof(void*)*(pList->reservedSize+AL_INCREMENT));
-
             if(aux!=NULL)
             {
                 pList->pElements = aux;
@@ -89,17 +90,21 @@ int al_add(ArrayList* pList,void* pElement)
             {
                 flag=0;
             }
-
         }
-            if(flag==0)
-            {
-                tam=pList->size;
-                pList->pElements[tam]=pElement;
-                pList->size++;
-                returnAux=0;
-            }
+
+        if(flag==1)
+        {
+            tam=pList->size;
+            pList->pElements[tam]=pElement;
+            pList->size++;
+            returnAux=0;
+        }
+
 
     }
+
+
+
     return returnAux;
 }
 
@@ -148,6 +153,11 @@ void* al_get(ArrayList* pList, int index)
 {
     void* returnAux = NULL;
 
+
+   if(pList!=NULL && index>0 && index<=al_len(pList))
+   {
+       returnAux=pList->pElements[index];
+   }
     return returnAux;
 }
 
@@ -163,6 +173,24 @@ void* al_get(ArrayList* pList, int index)
 int al_contains(ArrayList* pList, void* pElement)
 {
     int returnAux = -1;
+    int i;
+
+    if(pList!=NULL && pElement!=NULL)
+    {
+        for(i=0; i<al_len(pList); i++)
+        {
+            if(pList->pElements[i]==pElement)
+            {
+                returnAux=1;
+                break;
+            }
+            else
+            {
+                returnAux=0;
+            }
+        }
+    }
+
 
     return returnAux;
 }
