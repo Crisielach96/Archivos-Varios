@@ -316,7 +316,26 @@ int al_push(ArrayList* pList, int index, void* pElement)
 {
     int returnAux = -1;
 
-
+    if(pList!=NULL && pElement!=NULL && (index>=0 && index<pList->size))
+    {
+        if(resizeUp(pList)!=1)
+        {
+            if(expand(pList,index)!=1)
+            {
+                if(al_set(pList,index,pElement)!=1)
+                {
+                        returnAux=0;
+                }
+            }
+        }
+    }
+    if(index==pList->size)
+        {
+            if(al_add(pList,pElement)==0)
+            {
+                returnAux=0;
+            }
+        }
 
     return returnAux;
 }
@@ -331,21 +350,16 @@ int al_push(ArrayList* pList, int index, void* pElement)
 int al_indexOf(ArrayList* pList, void* pElement)
 {
     int returnAux = -1;
-
-    int i, aux;
+    int i;
 
     if(pList!=NULL && pElement!=NULL)
     {
-        aux=al_isEmpty(pList);
-
-        if(aux==0)
+        for(i=0;i<=al_len(pList);i++)
         {
-            for(i=0;i<al_len(pList);i++)
+            if(pList->pElements[i]==pElement)
             {
-                if(pList->pElements==pElement)
-                {
-                    returnAux=i;
-                }
+                returnAux=i;
+                break;
             }
         }
     }
@@ -389,6 +403,22 @@ void* al_pop(ArrayList* pList,int index)
 {
     void* returnAux = NULL;
 
+    if(pList!=NULL && (index >= 0 && index < pList->size))
+    {
+        if(al_isEmpty(pList)==0)
+        {
+            returnAux=al_get(pList,index);
+            if(returnAux!=NULL)
+            {
+                if(al_remove(pList,index)==-1)
+                {
+                    returnAux=NULL;
+                }
+            }
+        }
+
+    }
+
     return returnAux;
 }
 
@@ -404,6 +434,25 @@ void* al_pop(ArrayList* pList,int index)
 ArrayList* al_subList(ArrayList* pList,int from,int to)
 {
     void* returnAux = NULL;
+
+    int i;
+    ArrayList* newList=NULL;
+    if(pList!=NULL && from<=to && from>=0 && to <= pList->size)
+    {
+        newList=al_newArrayList();
+        if(newList!=NULL)
+        {
+            for(i=from;i<to;i++)
+            {
+                   al_add(newList,al_get(pList,i));
+            }
+            if(newList!=NULL && al_isEmpty(newList)==0)
+            {
+                return newList;
+            }
+    }
+        }
+
 
     return returnAux ;
 }
@@ -422,6 +471,31 @@ int al_containsAll(ArrayList* pList,ArrayList* pList2)
 {
     int returnAux = -1;
 
+    if(pList!=NULL && pList2!=NULL)
+    {
+            for(i=0;i<al_len(pList2);i++)
+            {
+                for(j=0;j<al_len(pList);j++)
+                {
+                    if(pList->pElements[j]==pList2->pElements[i])
+                    {
+                        cont++;
+                        break;
+                    } else
+                    {
+                        continue;
+                    }
+                }
+            }
+    if(cont==pList2->size)
+        {
+            returnAux=1;
+        } else
+        {
+            returnAux=0;
+        }
+    }
+
     return returnAux;
 }
 
@@ -435,6 +509,53 @@ int al_containsAll(ArrayList* pList,ArrayList* pList2)
 int al_sort(ArrayList* pList, int (*pFunc)(void*,void*), int order)
 {
     int returnAux = -1;
+
+    void* auxiliar=NULL;
+    if(pList!=NULL&&pFunc!=NULL&&order>-1&&order<2)
+    {
+        for(i=0;i<al_len(pList)-1;i++)
+        {
+            for(j=i+1;j<al_len(pList);j++)
+            {
+                switch(pFunc(pList->pElements[i],pList->pElements[j]))
+                {
+                    case -1:
+                    if(order==1)
+                    {
+                        continue;
+                    } else
+                    {
+                        auxiliar=pList->pElements[j];
+                        pList->pElements[j]=pList->pElements[i];
+                        pList->pElements[i]=auxiliar;
+                    }
+                    break;
+                    case 0:
+                        if(order==1)
+                        {
+                            continue;
+                        } else
+                        {
+                            continue;
+                        }
+                    break;
+                    case 1:
+                        if(order==1)
+                        {
+                            auxiliar=pList->pElements[j];
+                            pList->pElements[j]=pList->pElements[i];
+                            pList->pElements[i]=auxiliar;
+                        } else
+                        {
+                            continue;
+                        }
+                    break;
+                }
+            }
+        }
+    returnAux=0;
+
+    }
 
     return returnAux;
 }
