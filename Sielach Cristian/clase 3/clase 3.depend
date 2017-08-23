@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1503494247 source:d:\cris\clase 3\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"funciones.h"
+
+1503492752 d:\cris\clase 3\funciones.h
+
+1503493492 source:d:\cris\clase 3\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
