@@ -21,29 +21,25 @@ int main()
 
     case 1:
         system("cls");
-        printf("Opcion1");
         alta(equipo,50);
-        getch();
 
         break;
 
     case 2:
-         system("cls");
-        printf("Opcion2");
+        system("cls");
+        modificacion(equipo,50);
         getch();
-
 
         break;
     case 3:
-         system("cls");
-        printf("Opcion3");
+        system("cls");
+        baja(equipo,50);
         getch();
 
         break;
 
     case 4:
         system("cls");
-        printf("Opcion4");
         mostrarProgramadores(equipo,50);
         getch();
         break;
