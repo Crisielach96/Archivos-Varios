@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1506525307 source:d:\cristian sielach 1-a\estructuras-anidadas\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	"funciones.h"
+
+1506525475 source:d:\cristian sielach 1-a\estructuras-anidadas\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	"funciones.h"
+
+1506525269 d:\cristian sielach 1-a\estructuras-anidadas\funciones.h
+
