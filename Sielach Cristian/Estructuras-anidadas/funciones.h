@@ -30,7 +30,7 @@ typedef struct
 void variablesCero(eProg[],int);
 void inicializarVariables(eProg[],int);
 void mostrarProgramador(eProg);
-void mostrarProgramadores(eProg[],int,eCat[],int);
+void mostrarProgramadores(eProg[],eCat[],int,int);
 int buscarLibre(eProg[],int);
 int buscarProgramador(int,eProg[],int);
 void alta(eProg[],int);

@@ -3,6 +3,8 @@
 #include <conio.h>
 #include "funciones.h"
 
+#define cantProg 4
+
 int menu();
 
 int main()
@@ -11,7 +13,7 @@ int main()
     eProy proy[3];
     eCat cat[3];
     inicializarVariables(equipo,50);
-    harcProg(equipo,3);
+    harcProg(equipo,cantProg);
     harcProy(proy,3);
     harcCat(cat,3);
     int salir = 1;
@@ -41,7 +43,7 @@ int main()
 
     case 4:
         system("cls");
-        mostrarProgramadores(equipo,3,cat,3);
+        mostrarProgramadores(equipo,cat,cantProg,3);
         printf("\n");
 
         getch();

@@ -60,25 +60,35 @@ void inicializarVariables(eProg lista[],int tam)
 void mostrarProgramador(eProg lista)
 {
     printf("\n%d     %s",lista.id,lista.nombre);
-
-
 }
 
-void mostrarProgramadores(eProg lista[],int tamPro, eCat cate[], int tamCat)
+void mostrarProgramadores(eProg lista[], eCat cate[],int tamPro, int tamCat)
 {
-    int i;
+    int i,j;
     int flag=0;
 
-    for(i=0; i<tamPro; i++)
+    for(i=0;i<tamPro;i++)
+    {
+        for(j=0;j<tamCat;j++)
+        {
+            if(lista[i].estado==1 && lista[i].categ==cate[j].idCat)
+            {
+                mostrarProgramador(lista[i]);
+                printf("   \t%s",cate[j].nombCat);
+                flag=1;
+            }
+        }
+    }
+
+    /*for(i=0; i<tamPro; i++)
     {
         if(lista[i].estado==1)
         {
             mostrarProgramador(lista[i]);
-            buscarCat(lista,cate,3,3);
             flag=1;
         }
 
-    }
+    }*/
     if(flag==0)
     {
         printf("\nNo hay datos cargados en el sistema");
@@ -198,10 +208,10 @@ void modificacion(eProg lista[],int tam)
 void harcProg(eProg lista[],int tam)
 {
     int i;
-    int id[]={1,2,3};
-    char nombre[][20]={"Raul","Jorge","Manuel"};
-    char categoria[]={3,1,2};
-    int estado[]={1,1,1};
+    int id[]={0,1,2,3};
+    char nombre[][20]={"Raul","Jorge","Manuel","Rojas"};
+    char categoria[]={3,1,2,3};
+    int estado[]={1,1,1,1};
 
     for(i=0;i<tam;i++)
     {
@@ -240,7 +250,7 @@ void harcProy(eProy proyec[],int tam)
     }
 }
 
-void buscarCat(eProg lista[],eCat cat[],int tamProg,int tamCat)
+/*void buscarCat(eProg lista[],eCat cat[],int tamProg,int tamCat)
 {
     int i,j;
 
@@ -250,8 +260,20 @@ void buscarCat(eProg lista[],eCat cat[],int tamProg,int tamCat)
         {
             if(lista[i].categ==cat[j].idCat)
             {
-
+                printf("\n%s",cat[j].nombCat);
             }
         }
     }
+}*/
+
+
+void mostrarProyecto(eProg lista[],eProy proy[],ProgProy lista0[],int tam)
+{
+   int i;
+
+   for(i=0;i<tam;i++)
+   {
+       lista0[i].idProg=lista[i].id;
+       lista0[i].idProy=proy[i].idProy;
+   }
 }

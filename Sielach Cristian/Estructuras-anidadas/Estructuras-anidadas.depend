@@ -14,3 +14,18 @@
 
 1506525269 d:\cristian sielach 1-a\estructuras-anidadas\funciones.h
 
+1506560851 source:c:\users\cris\desktop\estructuras-anidadas\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	"funciones.h"
+
+1506558482 c:\users\cris\desktop\estructuras-anidadas\funciones.h
+
+1506560573 source:c:\users\cris\desktop\estructuras-anidadas\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	"funciones.h"
+
