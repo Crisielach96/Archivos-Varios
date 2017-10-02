@@ -12,10 +12,14 @@ int main()
     eProg equipo[50];
     eProy proy[3];
     eCat cat[3];
+    ProgProy progsproys[]={{0,3},{1,2},{2,3},{2,1},{3,2},{1,3}};
     inicializarVariables(equipo,50);
     harcProg(equipo,cantProg);
     harcProy(proy,3);
     harcCat(cat,3);
+    harcProy(proy,3);
+
+
     int salir = 1;
 
 
@@ -24,7 +28,8 @@ int main()
 
     case 1:
         system("cls");
-
+        mostrarTodo(equipo,cantProg,proy,3,progsproys,6,cat,3);
+        getch();
 
         break;
 
@@ -43,7 +48,7 @@ int main()
 
     case 4:
         system("cls");
-        mostrarProgramadores(equipo,cat,cantProg,3);
+        mostrarTodo(equipo,cantProg,proy,3,progsproys,6,cat,3);
         printf("\n");
 
         getch();

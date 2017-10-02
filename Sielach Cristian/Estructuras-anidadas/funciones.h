@@ -40,3 +40,4 @@ void harcProg(eProg[],int);
 void harcProy(eProy[],int);
 void buscarCat(eProg[],eCat[],int,int);
 void harcCat(eCat[],int);
+void mostrarTodo(eProg[],int,eProy[],int,ProgProy[],int,eCat[],int);

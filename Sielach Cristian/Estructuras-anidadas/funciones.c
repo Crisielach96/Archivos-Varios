@@ -67,9 +67,9 @@ void mostrarProgramadores(eProg lista[], eCat cate[],int tamPro, int tamCat)
     int i,j;
     int flag=0;
 
-    for(i=0;i<tamPro;i++)
+    for(i=0; i<tamPro; i++)
     {
-        for(j=0;j<tamCat;j++)
+        for(j=0; j<tamCat; j++)
         {
             if(lista[i].estado==1 && lista[i].categ==cate[j].idCat)
             {
@@ -208,12 +208,12 @@ void modificacion(eProg lista[],int tam)
 void harcProg(eProg lista[],int tam)
 {
     int i;
-    int id[]={0,1,2,3};
-    char nombre[][20]={"Raul","Jorge","Manuel","Rojas"};
-    char categoria[]={3,1,2,3};
-    int estado[]={1,1,1,1};
+    int id[]= {0,1,2,3};
+    char nombre[][20]= {"Raul","Jorge","Manuel","Rojas"};
+    char categoria[]= {3,1,2,3};
+    int estado[]= {1,1,1,1};
 
-    for(i=0;i<tam;i++)
+    for(i=0; i<tam; i++)
     {
         lista[i].id=id[i];
         strcpy(lista[i].nombre,nombre[i]);
@@ -225,11 +225,11 @@ void harcProg(eProg lista[],int tam)
 void harcCat(eCat cat[],int tam)
 {
     int i;
-    int id[]={1,2,3};
-    char desc[][12]={"Senior","SemiSenior","Junior"};
-    int sueldo[]={100,75,50};
+    int id[]= {1,2,3};
+    char desc[][12]= {"Senior","SemiSenior","Junior"};
+    int sueldo[]= {100,75,50};
 
-    for(i=0;i<tam;i++)
+    for(i=0; i<tam; i++)
     {
         cat[i].idCat=id[i];
         strcpy(cat[i].nombCat,desc[i]);
@@ -240,10 +240,10 @@ void harcCat(eCat cat[],int tam)
 void harcProy(eProy proyec[],int tam)
 {
     int i;
-    int id[]={1,2,3};
-    char desc[][10]={"Linux","Android","IOS"};
+    int id[]= {1,2,3};
+    char desc[][10]= {"Linux","Android","IOS"};
 
-    for(i=0;i<tam;i++)
+    for(i=0; i<tam; i++)
     {
         proyec[i].idProy=id[i];
         strcpy(proyec[i].desc,desc[i]);
@@ -267,13 +267,38 @@ void harcProy(eProy proyec[],int tam)
 }*/
 
 
-void mostrarProyecto(eProg lista[],eProy proy[],ProgProy lista0[],int tam)
+void mostrarTodo(eProg lista[],int tamProg, eProy proy[],int tamProy,ProgProy lista0[],int tamProgProy,eCat cate[],int tamCat)
 {
-   int i;
+    int i,j,k,l;
 
-   for(i=0;i<tam;i++)
-   {
-       lista0[i].idProg=lista[i].id;
-       lista0[i].idProy=proy[i].idProy;
-   }
+
+    for(i=0; i<tamProg; i++)
+    {
+        mostrarProgramador(lista[i]);
+        for(l=0; l<tamCat; l++)
+        {
+            if(lista[i].categ==cate[l].idCat)
+            {
+                printf("   \t%s",cate[l].nombCat);
+
+                for(j=0; j<tamProgProy; j++)
+                {
+                    if(lista[i].id==lista0[j].idProg)
+                    {
+                        for(k=0; k<tamProy; k++)
+                        {
+                            if(lista0[j].idProy==proy[k].idProy)
+                            {
+
+                                printf("   \t%s",proy[k].desc);
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+
+
