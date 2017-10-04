@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1507126744 source:d:\sielach cristian 1-a\1a_pp_sielach_cristian\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	"funciones.h"
+
+1507128794 source:d:\sielach cristian 1-a\1a_pp_sielach_cristian\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	"funciones.h"
+
+1507126744 d:\sielach cristian 1-a\1a_pp_sielach_cristian\funciones.h
+
+1507126744 source:e:\1a_pp_sielach_cristian\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	"funciones.h"
+
+1507126744 e:\1a_pp_sielach_cristian\funciones.h
+
+1507129373 source:e:\1a_pp_sielach_cristian\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	"funciones.h"
+
