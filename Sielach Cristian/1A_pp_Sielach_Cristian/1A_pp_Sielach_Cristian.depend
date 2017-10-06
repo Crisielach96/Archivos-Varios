@@ -29,3 +29,18 @@
 	<string.h>
 	"funciones.h"
 
+1507328868 source:c:\users\cris\desktop\1a_pp_sielach_cristian\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	"funciones.h"
+
+1507328696 c:\users\cris\desktop\1a_pp_sielach_cristian\funciones.h
+
+1507331456 source:c:\users\cris\desktop\1a_pp_sielach_cristian\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	"funciones.h"
+

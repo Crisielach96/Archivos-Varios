@@ -37,8 +37,7 @@ int main()
 
         case 2:
             system("cls");
-            ordenar(autos,cantAutos);
-            mostrarClientesAutos(cliente,cantClientes,autos,cantAutos);
+            ordenar(cliente,cantClientes,autos,cantAutos);
             getch();
 
             break;

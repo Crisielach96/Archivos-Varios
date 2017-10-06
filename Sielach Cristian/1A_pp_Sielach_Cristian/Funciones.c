@@ -188,6 +188,30 @@ void mostrarCliente(eCliente lista)
     printf("\n%d   \t%s    \t%s    \t%ld    \t%d",lista.idDuenio,lista.nombre,lista.apellido,lista.numeroTarjeta,lista.direccion);
 }
 
+void mostrarAuto(eAuto lista)
+{
+    char mac[20];
+
+    if(lista.marca==1)
+    {
+        strcpy(mac,"Alfa Romeo");
+    }
+    else if(lista.marca==2)
+    {
+        strcpy(mac,"Ferrari");
+    }
+    else if(lista.marca==3)
+    {
+        strcpy(mac,"Audi");
+    }
+    else
+    {
+        strcpy(mac,"Otro");
+    }
+
+    printf("\t%s    \t%s     \t%d",mac,lista.patente,lista.horaEntrada);
+}
+
 void mostrarClientes(eCliente lista[], int tam)
 {
     int i;
@@ -213,6 +237,8 @@ void mostrarClientesAutos(eCliente lista[], int tamC,eAuto autos[],int tamA)
     int i,j;
     int flag=0;
 
+    printf("ID   \tNombre    \tApellido    \tTarjeta    Direccion\tMarca   \tPatente  \tHora Entrada\n");
+    printf("------------------------------------------------------------------------------------------------------------\t");
     for(i=0; i<tamC; i++)
     {
         for(j=0; j<tamA; j++)
@@ -221,14 +247,17 @@ void mostrarClientesAutos(eCliente lista[], int tamC,eAuto autos[],int tamA)
             {
                 if(lista[i].estado==1 && autos[j].estado==1)
                 {
+
                     mostrarCliente(lista[i]);
-                    printf("   \t%s   \t%d   \t%s",cat[j],autos[j].horaEntrada,autos[j].patente);
+                    printf("    ");
+                    mostrarAuto(autos[j]);
                     flag=1;
                 }
             }
 
         }
     }
+    printf("\n------------------------------------------------------------------------------------------------------------\t");
 
     if(flag==0)
     {
@@ -236,49 +265,41 @@ void mostrarClientesAutos(eCliente lista[], int tamC,eAuto autos[],int tamA)
     }
 }
 
-void ordenar(eAuto autos[],int tamA)
+void ordenar(eCliente lista[], int tamC,eAuto autos[],int tamA)
 {
     int i,j;
     eAuto auxA;
 
     for(i=0; i<tamA-1; i++)
     {
-        for(j=i+1; j<tamA; j++)
+        for(j=1; j<tamA; j++)
         {
             if(autos[i].estado==1 && autos[j].estado==1)
             {
-                if(autos[j].horaEntrada>autos[i].horaEntrada)
+                if(autos[i].horaEntrada>autos[j].horaEntrada)
                 {
                     auxA=autos[i];
                     autos[i]=autos[j];
                     autos[j]=auxA;
                 }
-                else
+                if(autos[j].horaEntrada==autos[i].horaEntrada && strcmp(autos[i].patente,autos[j].patente)==1)
                 {
-                    if(autos[j].horaEntrada==autos[i].horaEntrada)
-                    {
+                    auxA=autos[i];
+                    autos[i]=autos[j];
+                    autos[j]=auxA;
 
-
-                        if(stricmp(autos[i].patente,autos[j].patente)>0)
-                        {
-                            auxA=autos[i];
-                            autos[i]=autos[j];
-                            autos[j]=auxA;
-
-                        }
-                    }
                 }
             }
-
         }
     }
+    mostrarClientesAutos(lista,tamC,autos,tamA);
 }
 
 void harcAuto(eAuto autos[],int tam)
 {
     char patente[][4]= {{"das"},{"des"},{"asd"},{"bod"}};
     int marca[]= {1,2,4,1};
-    int duenio[]= {0,3,2,1};
+    int duenio[]= {0,1,2,3};
     int horaEntrada[]= {12,21,12,15};
     int estado[]= {1,1,1,1};
 
