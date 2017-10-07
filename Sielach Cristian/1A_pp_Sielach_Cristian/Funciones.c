@@ -5,6 +5,22 @@
 #include "funciones.h"
 
 
+int menu()
+{
+    int opcion;
+    system("cls");
+    printf("1- Alta Cliente\n");
+    printf("2- Modificar numero de tarjeta\n");
+    printf("3- Ingreso de auto\n");
+    printf("4- Egreso de auto\n");
+    printf("5- Mostrar\n");
+    printf("6- Salir\n");
+    printf("\n\nIngrese opcion: ");
+    scanf("%d", &opcion);
+
+    return opcion;
+}
+
 int buscarLibre(eCliente lista[],int tam)
 {
     int i;
@@ -124,7 +140,7 @@ void altaAuto(eAuto lista[],int tamA,eCliente cliente[],int tamC)
     eAuto nuevoAuto;
     int lugar;
     int id;
-    int i;
+    int esta;
 
     lugar=buscarLibreAuto(lista,tamA);
 
@@ -136,27 +152,30 @@ void altaAuto(eAuto lista[],int tamA,eCliente cliente[],int tamC)
     {
         printf("\nIngrese ID del Duenio: ");
         scanf("%d",&id);
-        for(i=0; i<tamC; i++)
+        esta=buscarClientePorId(id,cliente,tamC);
+
+        if(esta!=-1)
         {
-            if(cliente[i].idDuenio==id)
+            mostrarCliente(cliente[esta]);
+            nuevoAuto.duenio=id;
+            printf("\n\nIngrese Patente: ");
+            fflush(stdin);
+            gets(nuevoAuto.patente);
+            printf("\nIngrese Marca del auto \n1-Alfa Romeo\n2-Ferrari\n3-Audi\n4-Otro\n");
+            scanf("%d",&nuevoAuto.marca);
+            printf("\nIngrese hora de entrada: ");
+            scanf("%d",&nuevoAuto.horaEntrada);
+            while(nuevoAuto.horaEntrada<0 || nuevoAuto.horaEntrada>24)
             {
-                mostrarCliente(cliente[i]);
-                nuevoAuto.duenio=id;
-                printf("\n\nIngrese Patente: ");
-                fflush(stdin);
-                gets(nuevoAuto.patente);
-                printf("\nIngrese Marca del auto \n1-Alfa Romeo\n2-Ferrari\n3-Audi\n4-Otro\n");
-                scanf("%d",&nuevoAuto.marca);
-                printf("\nIngrese hora de entrada: ");
+                printf("\nError! hora incorrecta.");
+                printf("\nReingrese: ");
                 scanf("%d",&nuevoAuto.horaEntrada);
-                while(nuevoAuto.horaEntrada<0 || nuevoAuto.horaEntrada>24)
-                {
-                    printf("\nError! hora incorrecta.");
-                    printf("\nReingrese: ");
-                    scanf("%d",&nuevoAuto.horaEntrada);
-                }
-                nuevoAuto.estado=1;
             }
+            nuevoAuto.estado=1;
+        }
+        else
+        {
+            printf("La ID no existe.");
         }
     }
     lista[lugar]=nuevoAuto;
@@ -265,18 +284,18 @@ void mostrarClientesAutos(eCliente lista[], int tamC,eAuto autos[],int tamA)
     }
 }
 
-void ordenar(eCliente lista[], int tamC,eAuto autos[],int tamA)
+void ordenar(eAuto autos[],int tamA)
 {
     int i,j;
     eAuto auxA;
 
     for(i=0; i<tamA-1; i++)
     {
-        for(j=1; j<tamA; j++)
+        for(j=i+1; j<tamA; j++)
         {
             if(autos[i].estado==1 && autos[j].estado==1)
             {
-                if(autos[i].horaEntrada>autos[j].horaEntrada)
+                if(autos[j].horaEntrada>autos[i].horaEntrada)
                 {
                     auxA=autos[i];
                     autos[i]=autos[j];
@@ -292,14 +311,13 @@ void ordenar(eCliente lista[], int tamC,eAuto autos[],int tamA)
             }
         }
     }
-    mostrarClientesAutos(lista,tamC,autos,tamA);
 }
 
 void harcAuto(eAuto autos[],int tam)
 {
     char patente[][4]= {{"das"},{"des"},{"asd"},{"bod"}};
     int marca[]= {1,2,4,1};
-    int duenio[]= {0,1,2,3};
+    int duenio[]= {2,0,1,3};
     int horaEntrada[]= {12,21,12,15};
     int estado[]= {1,1,1,1};
 
@@ -314,4 +332,118 @@ void harcAuto(eAuto autos[],int tam)
         autos[i].estado=estado[i];
     }
 
+}
+
+void modificacion(eCliente lista[],int tam)
+{
+    int esta;
+    int id;
+    char respuesta='n';
+
+    printf("\ningrese ID: ");
+    scanf("%d",&id);
+    esta=buscarClientePorId(id,lista,tam);
+
+    if(esta!=-1)
+    {
+        mostrarCliente(lista[esta]);
+        printf("\nDesea modificar esta entrada: S/N\n");
+        fflush(stdin);
+        respuesta=getch();
+        if(respuesta=='s')
+        {
+            printf("\nIngrese Nuemero de tarjeta: ");
+            scanf("%ld",&lista[esta].numeroTarjeta);
+            printf("\nModificacion con exito");
+        }
+        if(respuesta=='n')
+        {
+            printf("accion cancelada.\n");
+        }
+    }
+    else
+    {
+        printf("\nNo se ha encontrado el ID.");
+
+    }
+}
+
+int buscarAutoId(int id,eAuto lista[],int tam)
+{
+    int i;
+    int flag=-1;
+
+    for(i=0; i<tam; i++)
+    {
+        if(lista[i].estado==1 && lista[i].duenio==id)
+        {
+            flag=i;
+            break;
+        }
+    }
+    return flag;
+}
+
+void bajaAuto(eCliente lista[],int tamC,eAuto autos[],int tamA)
+{
+    char respuesta='n';
+    int aux, auxHora;
+    int total,id;
+    int i;
+
+    printf("Ingrese ID para darle de baja: ");
+    scanf("%d",&id);
+    aux=buscarAutoId(id,autos,tamA);
+
+    if(aux!=-1)
+    {
+        printf("\nDesea darle de baja a este objeto? s/n");
+        fflush(stdin);
+        respuesta=getch();
+
+        if(respuesta=='s')
+        {
+            autos[aux].estado=0;
+            printf("\n\ningrese hora de salida: ");
+            scanf("%d",&auxHora);
+
+            auxHora=auxHora-autos[aux].horaEntrada;
+
+            if(autos[aux].marca==1)
+            {
+                total=auxHora*150;
+            }
+            if(autos[aux].marca==2)
+            {
+                total=auxHora*175;
+            }
+            if(autos[aux].marca==3)
+            {
+                total=auxHora*200;
+            }
+            if(autos[aux].marca==4)
+            {
+                total=auxHora*250;
+            }
+
+            printf("\nBaja exitosa!!!\n\n");
+
+            for(i=0; i<tamC; i++)
+            {
+                if(autos[aux].duenio==lista[i].idDuenio)
+                {
+                    printf("ID   \tNombre    \tApellido    \tTarjeta    Direccion\tMarca   \tPatente   Hora Entrada \tPrecio\n");
+                    printf("--------------------------------------------------------------------------------------------------------------\t");
+                    mostrarCliente(lista[i]);
+                    mostrarAuto(autos[aux]);
+                    printf("       %d",total);
+                }
+            }
+
+        }
+        else
+        {
+            printf("\nAccion CANCELADA, no se dio de baja al objeto \n");
+        }
+    }
 }

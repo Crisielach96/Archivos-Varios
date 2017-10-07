@@ -17,7 +17,7 @@ typedef struct
     int estado;
 }eAuto;
 
-
+int menu();
 int buscarLibre(eCliente lista[],int tam);
 int buscarClientePorId(int id,eCliente lista[],int tam);
 void variablesCero(eCliente lista[],int i);
@@ -31,5 +31,8 @@ void variablesCeroAuto(eAuto lista[],int i);
 void inicializarVariablesAutos(eAuto lista[],int tam);
 void altaAuto(eAuto lista[],int tamA,eCliente cliente[],int tamC);
 void mostrarClientesAutos(eCliente lista[], int tamC,eAuto autos[],int tamA);
-void ordenar(eCliente lista[], int tamC,eAuto autos[],int tamA);
+void ordenar(eAuto autos[],int tamA);
 void harcAuto(eAuto autos[],int tam);
+void modificacion(eCliente lista[],int tam);
+void bajaAuto(eCliente lista[],int tamC,eAuto autos[],int tamA);
+int buscarAutoId(int id,eAuto lista[],int tam);

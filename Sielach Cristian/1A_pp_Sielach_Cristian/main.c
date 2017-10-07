@@ -10,8 +10,6 @@
 #define AUDI 3
 #define OTROS 4
 
-int menu();
-
 int main()
 {
     eCliente cliente[10];
@@ -37,7 +35,7 @@ int main()
 
         case 2:
             system("cls");
-            ordenar(cliente,cantClientes,autos,cantAutos);
+            modificacion(cliente,cantClientes);
             getch();
 
             break;
@@ -49,25 +47,26 @@ int main()
             break;
 
         case 4:
-            printf("\n");
-            mostrarClientes(cliente,cantClientes);
+            system("cls");
+            bajaAuto(cliente,cantClientes,autos,cantAutos);
             getch();
             break;
 
         case 5:
-            printf("\n");
+            system("cls");
+            ordenar(autos,cantAutos);
+            mostrarClientesAutos(cliente,cantClientes,autos,cantAutos);
             getch();
             break;
 
         case 6:
-            printf("\n");
-            getch();
+            salir = 0;
             break;
 
-
-
         case 7:
-            salir = 0;
+            system("cls");
+            mostrarClientes(cliente,cantClientes);
+            getch();
             break;
 
         default:
@@ -78,22 +77,4 @@ int main()
     }
     while(salir);
     return 0;
-}
-
-int menu()
-{
-    int opcion;
-    system("cls");
-    printf("1- Alta Cliente\n");
-    printf("2- Clientes y autos\n");
-    printf("3- Agregar auto\n");
-    printf("4- Mostrar Clientes\n");
-    printf("5- \n");
-    printf("6- \n");
-    printf("7- Salir\n");
-    printf("\n\nIngrese opcion: ");
-    scanf("%d", &opcion);
-
-    return opcion;
-
 }
