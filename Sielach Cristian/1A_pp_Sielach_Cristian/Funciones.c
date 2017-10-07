@@ -204,7 +204,7 @@ void harcCliente(eCliente lista[],int tam)
 
 void mostrarCliente(eCliente lista)
 {
-    printf("\n%d   \t%s    \t%s    \t%ld    \t%d",lista.idDuenio,lista.nombre,lista.apellido,lista.numeroTarjeta,lista.direccion);
+    printf("%d   \t%s",lista.idDuenio,lista.nombre);
 }
 
 void mostrarAuto(eAuto lista)
@@ -228,7 +228,7 @@ void mostrarAuto(eAuto lista)
         strcpy(mac,"Otro");
     }
 
-    printf("\t%s    \t%s     \t%d",mac,lista.patente,lista.horaEntrada);
+    printf("%s    \t%s    \t%d",mac,lista.patente,lista.horaEntrada);
 }
 
 void mostrarClientes(eCliente lista[], int tam)
@@ -256,27 +256,38 @@ void mostrarClientesAutos(eCliente lista[], int tamC,eAuto autos[],int tamA)
     int i,j;
     int flag=0;
 
-    printf("ID   \tNombre    \tApellido    \tTarjeta    Direccion\tMarca   \tPatente  \tHora Entrada\n");
-    printf("------------------------------------------------------------------------------------------------------------\t");
-    for(i=0; i<tamC; i++)
+    /*for(i=0; i<tamA; i++)
     {
-        for(j=0; j<tamA; j++)
-        {
-            if(autos[j].duenio==lista[i].idDuenio)
-            {
-                if(lista[i].estado==1 && autos[j].estado==1)
-                {
+        if(autos[i].estado==1)
+        printf("%d\t%.5s\n",autos[i].horaEntrada, autos[i].patente);
+    }*/
 
-                    mostrarCliente(lista[i]);
-                    printf("    ");
-                    mostrarAuto(autos[j]);
-                    flag=1;
+
+    printf("Marca    \tPatente    \tHora de entrada      \tID    \tNombre\n");
+    //printf("------------------------------------------------------------------------------------------------------------\t");
+    for(i=0; i<tamA; i++)
+    {
+        if(autos[i].estado==1)
+        {
+            for(j=0; j<tamC; j++)
+            {
+                if(lista[j].estado==1)
+                {
+                    if(autos[i].duenio==lista[j].idDuenio)
+                    {
+                        mostrarAuto(autos[i]);
+                        printf("  --  ");
+                        mostrarCliente(lista[j]);
+                        printf("\n");
+                        flag=1;
+                    }
                 }
+
             }
 
         }
     }
-    printf("\n------------------------------------------------------------------------------------------------------------\t");
+    //printf("\n------------------------------------------------------------------------------------------------------------\t");
 
     if(flag==0)
     {
@@ -295,24 +306,30 @@ void ordenar(eAuto autos[],int tamA)
         {
             if(autos[i].estado==1 && autos[j].estado==1)
             {
-                if(autos[j].horaEntrada>autos[i].horaEntrada)
+                if(autos[i].horaEntrada>autos[j].horaEntrada)
                 {
                     auxA=autos[i];
                     autos[i]=autos[j];
                     autos[j]=auxA;
                 }
-                if(autos[j].horaEntrada==autos[i].horaEntrada && strcmp(autos[i].patente,autos[j].patente)==1)
+                else
                 {
-                    auxA=autos[i];
-                    autos[i]=autos[j];
-                    autos[j]=auxA;
+                    if(autos[j].horaEntrada==autos[i].horaEntrada)
+                    {
+                        if(strcmp(autos[i].patente,autos[j].patente)>0)
+                        {
+                            auxA=autos[i];
+                            autos[i]=autos[j];
+                            autos[j]=auxA;
+                        }
 
+
+                    }
                 }
             }
         }
     }
 }
-
 void harcAuto(eAuto autos[],int tam)
 {
     char patente[][4]= {{"das"},{"des"},{"asd"},{"bod"}};
