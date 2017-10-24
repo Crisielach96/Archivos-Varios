@@ -74,7 +74,7 @@ void variablesCero(eCliente lista[],int i)
     lista[i].idDuenio=0;
     strcpy(lista[i].nombre,"\0");
     strcpy(lista[i].apellido,"\0");
-    lista[i].direccion=0;
+    strcpy(lista[i].direccion,"\0");
     lista[i].numeroTarjeta=0;
     lista[i].estado=0;
     lista[i].numeroTarjeta=0;
@@ -125,7 +125,8 @@ void alta(eCliente lista[],int tam)
         fflush(stdin);
         gets(nuevoCliente.apellido);
         printf("\nIngrese direccion: ");
-        scanf("%d",&nuevoCliente.direccion);
+        fflush(stdin);
+        gets(nuevoCliente.direccion);
         printf("\nIngrese Numero de Tarjeta: ");
         scanf("%ld",&nuevoCliente.numeroTarjeta);
         nuevoCliente.estado=1;
@@ -187,14 +188,14 @@ void harcCliente(eCliente lista[],int tam)
     int idDuenio[]= {0,1,2,3};
     char nombre[][20]= {"Raul","Jorge","Manuel","Miguel"};
     char apellido[][20]= {"Gomez","Lopez","Campos","Rojas"};
-    int direccion[]= {123,124,125,126};
+    char direccion[][50]= {"Rodolfo Lopez 123","Mitre 124","Garibaldi 125","Alem 126"};
     long int numeroTarjeta[]= {40080379,39621487,36987123,37693481};
     int estado[]= {1,1,1,1};
 
     for(i=0; i<tam; i++)
     {
         lista[i].idDuenio=idDuenio[i];
-        lista[i].direccion=direccion[i];
+        strcpy(lista[i].direccion,direccion[i]);
         strcpy(lista[i].nombre,nombre[i]);
         strcpy(lista[i].apellido,apellido[i]);
         lista[i].numeroTarjeta=numeroTarjeta[i];
@@ -204,7 +205,7 @@ void harcCliente(eCliente lista[],int tam)
 
 void mostrarCliente(eCliente lista)
 {
-    printf("%d   \t%s",lista.idDuenio,lista.nombre);
+    printf("    %d    \t%s",lista.idDuenio,lista.nombre);
 }
 
 void mostrarAuto(eAuto lista)
@@ -228,7 +229,7 @@ void mostrarAuto(eAuto lista)
         strcpy(mac,"Otro");
     }
 
-    printf("%s    \t%s    \t%d",mac,lista.patente,lista.horaEntrada);
+    printf("%s    \t%s              \t%d",mac,lista.patente,lista.horaEntrada);
 }
 
 void mostrarClientes(eCliente lista[], int tam)
@@ -256,15 +257,8 @@ void mostrarClientesAutos(eCliente lista[], int tamC,eAuto autos[],int tamA)
     int i,j;
     int flag=0;
 
-    /*for(i=0; i<tamA; i++)
-    {
-        if(autos[i].estado==1)
-        printf("%d\t%.5s\n",autos[i].horaEntrada, autos[i].patente);
-    }*/
-
-
     printf("Marca    \tPatente    \tHora de entrada      \tID    \tNombre\n");
-    //printf("------------------------------------------------------------------------------------------------------------\t");
+    printf("----------------------------------------------------------------------\t\n");
     for(i=0; i<tamA; i++)
     {
         if(autos[i].estado==1)
@@ -276,7 +270,7 @@ void mostrarClientesAutos(eCliente lista[], int tamC,eAuto autos[],int tamA)
                     if(autos[i].duenio==lista[j].idDuenio)
                     {
                         mostrarAuto(autos[i]);
-                        printf("  --  ");
+                        printf("           ");
                         mostrarCliente(lista[j]);
                         printf("\n");
                         flag=1;
@@ -287,7 +281,7 @@ void mostrarClientesAutos(eCliente lista[], int tamC,eAuto autos[],int tamA)
 
         }
     }
-    //printf("\n------------------------------------------------------------------------------------------------------------\t");
+    printf("----------------------------------------------------------------------\t\n");
 
     if(flag==0)
     {
@@ -333,9 +327,9 @@ void ordenar(eAuto autos[],int tamA)
 void harcAuto(eAuto autos[],int tam)
 {
     char patente[][4]= {{"das"},{"des"},{"asd"},{"bod"}};
-    int marca[]= {1,2,4,1};
+    int marca[]= {3,2,3,1};
     int duenio[]= {2,0,1,3};
-    int horaEntrada[]= {12,21,12,15};
+    int horaEntrada[]= {12,21,21,15};
     int estado[]= {1,1,1,1};
 
     int i;
@@ -401,11 +395,11 @@ int buscarAutoId(int id,eAuto lista[],int tam)
     return flag;
 }
 
-void bajaAuto(eCliente lista[],int tamC,eAuto autos[],int tamA)
+int bajaAuto(eCliente lista[],int tamC,eAuto autos[],int tamA,int gananciaXmarca[])
 {
     char respuesta='n';
     int aux, auxHora;
-    int total,id;
+    int total=0,id;
     int i;
 
     printf("Ingrese ID para darle de baja: ");
@@ -414,6 +408,9 @@ void bajaAuto(eCliente lista[],int tamC,eAuto autos[],int tamA)
 
     if(aux!=-1)
     {
+        printf("\n");
+        mostrarAuto(autos[aux]);
+        printf("\n");
         printf("\nDesea darle de baja a este objeto? s/n");
         fflush(stdin);
         respuesta=getch();
@@ -424,23 +421,33 @@ void bajaAuto(eCliente lista[],int tamC,eAuto autos[],int tamA)
             printf("\n\ningrese hora de salida: ");
             scanf("%d",&auxHora);
 
+            if(auxHora<autos[aux].horaEntrada)
+            {
+                printf("\n\nReingrese hora de salida: ");
+                scanf("%d",&auxHora);
+            }
+
             auxHora=auxHora-autos[aux].horaEntrada;
 
             if(autos[aux].marca==1)
             {
                 total=auxHora*150;
+                gananciaXmarca[0]+=total;
             }
             if(autos[aux].marca==2)
             {
                 total=auxHora*175;
+                gananciaXmarca[1]+=total;
             }
             if(autos[aux].marca==3)
             {
                 total=auxHora*200;
+                gananciaXmarca[2]+=total;
             }
             if(autos[aux].marca==4)
             {
                 total=auxHora*250;
+                gananciaXmarca[3]+=total;
             }
 
             printf("\nBaja exitosa!!!\n\n");
@@ -449,10 +456,11 @@ void bajaAuto(eCliente lista[],int tamC,eAuto autos[],int tamA)
             {
                 if(autos[aux].duenio==lista[i].idDuenio)
                 {
-                    printf("ID   \tNombre    \tApellido    \tTarjeta    Direccion\tMarca   \tPatente   Hora Entrada \tPrecio\n");
-                    printf("--------------------------------------------------------------------------------------------------------------\t");
-                    mostrarCliente(lista[i]);
+                    printf("Marca    \tPatente    \tHora de entrada      \tID    \tNombre      Precio\n");
+                    printf("----------------------------------------------------------------------------------\t\n");
                     mostrarAuto(autos[aux]);
+                    printf("           ");
+                    mostrarCliente(lista[i]);
                     printf("       %d",total);
                 }
             }
@@ -461,6 +469,29 @@ void bajaAuto(eCliente lista[],int tamC,eAuto autos[],int tamA)
         else
         {
             printf("\nAccion CANCELADA, no se dio de baja al objeto \n");
+        }
+    }
+    return total;
+}
+
+void maxCantAutos(eCliente lista[],int tamC,eAuto autos[],int tamA)
+{
+    int i,j;
+
+    printf("Marca    \tPatente    \tHora de entrada      \tID    \tNombre\n");
+    printf("----------------------------------------------------------------------\t\n");
+    for(i=0; i<tamA; i++)
+    {
+        for(j=0; j<tamC; j++)
+        {
+            if(autos[i].marca==3 && autos[i].estado==1 && lista[j].idDuenio==autos[i].duenio && lista[j].estado==1)
+            {
+
+                mostrarAuto(autos[i]);
+                printf("           ");
+                mostrarCliente(lista[j]);
+                printf("\n");
+            }
         }
     }
 }

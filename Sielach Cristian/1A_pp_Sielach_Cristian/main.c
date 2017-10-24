@@ -5,10 +5,7 @@
 
 #define cantClientes 10
 #define cantAutos 10
-#define ALPHA_ROMEO 1
-#define FERRARI 2
-#define AUDI 3
-#define OTROS 4
+
 
 int main()
 {
@@ -19,7 +16,7 @@ int main()
     harcCliente(cliente,4);
     harcAuto(autos,4);
 
-    int salir = 1;
+    int salir = 1,totalRecaudacion=0, gananciaMarca[]= {0,0,0,0};
 
     do
     {
@@ -48,7 +45,7 @@ int main()
 
         case 4:
             system("cls");
-            bajaAuto(cliente,cantClientes,autos,cantAutos);
+            totalRecaudacion+=bajaAuto(cliente,cantClientes,autos,cantAutos,gananciaMarca);
             getch();
             break;
 
@@ -56,6 +53,21 @@ int main()
             system("cls");
             ordenar(autos,cantAutos);
             mostrarClientesAutos(cliente,cantClientes,autos,cantAutos);
+            getch();
+
+            printf("\n\n");
+            printf(" \nTodos los clientes con Audis. \n");
+            maxCantAutos(cliente,cantClientes,autos,cantAutos);
+            getch();
+
+            printf("\n\n");
+            printf(" \nGanancia por Marca \n\n");
+            printf("ALPHA: $%d  FERRARI: $%d  AUDI: $%d  OTROS: $%d \n",gananciaMarca[0],gananciaMarca[1],gananciaMarca[2],gananciaMarca[3]);
+            getch();
+
+            printf("\n\n");
+            printf(" \nRecaudacion del total del estacionamiento \n");
+            printf("\nGanancias Totales: $%d",totalRecaudacion);
             getch();
             break;
 
@@ -72,7 +84,6 @@ int main()
         default:
             printf("Opcion Invalida!!\n");
             system("pause");
-
         }
     }
     while(salir);

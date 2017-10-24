@@ -4,13 +4,13 @@ typedef struct
     char nombre[20];
     char apellido[20];
     long int numeroTarjeta;
-    int direccion;
+    char direccion[50];
     int estado;
 }eCliente;
 
 typedef struct
 {
-    char patente[4];
+    char patente[8];
     int marca;
     int duenio;
     int horaEntrada;
@@ -34,5 +34,6 @@ void mostrarClientesAutos(eCliente lista[], int tamC,eAuto autos[],int tamA);
 void ordenar(eAuto autos[],int tamA);
 void harcAuto(eAuto autos[],int tam);
 void modificacion(eCliente lista[],int tam);
-void bajaAuto(eCliente lista[],int tamC,eAuto autos[],int tamA);
+int bajaAuto(eCliente lista[],int tamC,eAuto autos[],int tamA,int gananciaXmarca[]);
 int buscarAutoId(int id,eAuto lista[],int tam);
+void maxCantAutos(eCliente lista[],int tamC,eAuto autos[],int tamA);
