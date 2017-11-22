@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1511345294 source:d:\1a_sp_sielach_cristian\parcial\parcial\arraylistmodificada.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayListModificada.h"
+
+1511345294 d:\1a_sp_sielach_cristian\parcial\parcial\arraylistmodificada.h
+
+1511362677 source:d:\1a_sp_sielach_cristian\parcial\parcial\clientes.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayListModificada.h"
+	"clientes.h"
+
+1511361525 d:\1a_sp_sielach_cristian\parcial\parcial\clientes.h
+
+1511362781 source:d:\1a_sp_sielach_cristian\parcial\parcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayListModificada.h"
+	"clientes.h"
+
