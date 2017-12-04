@@ -1,0 +1,63 @@
+# depslib dependency file v1.0
+1511354840 source:d:\parciaaaaal\splia\parcial\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1510752496 d:\parciaaaaal\splia\parcial\arraylist.h
+
+1511362489 source:d:\parciaaaaal\splia\parcial\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+	"funciones.h"
+
+1511361867 d:\parciaaaaal\splia\parcial\funciones.h
+
+1511362927 source:d:\parciaaaaal\splia\parcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"funciones.h"
+
+1511354840 source:c:\users\alumno\desktop\parciaaaaal\splia\parcial\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1510752496 c:\users\alumno\desktop\parciaaaaal\splia\parcial\arraylist.h
+
+1511362489 source:c:\users\alumno\desktop\parciaaaaal\splia\parcial\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+	"funciones.h"
+
+1511959155 c:\users\alumno\desktop\parciaaaaal\splia\parcial\funciones.h
+
+1511362927 source:c:\users\alumno\desktop\parciaaaaal\splia\parcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"funciones.h"
+
+1511354840 source:f:\usuarios\alumno\escritorio\parcial\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1510752496 f:\usuarios\alumno\escritorio\parcial\arraylist.h
+
+1511960037 source:f:\usuarios\alumno\escritorio\parcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"funciones.h"
+
+1511959155 f:\usuarios\alumno\escritorio\parcial\funciones.h
+
