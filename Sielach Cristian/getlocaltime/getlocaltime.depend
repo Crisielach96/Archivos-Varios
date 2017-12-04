@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1510533800 source:d:\users\cristian\desktop\mis cosas\utn fra\getlocaltime\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
