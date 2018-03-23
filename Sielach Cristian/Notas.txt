@@ -1,3 +1,20 @@
 Peliculas: 
 piratas de sillicon valley
 Snowden
+
+Paginas:
+OSBoxes
+
+
+OS:
+
+Deepin
+kodi
+lakka
+
+OS de seguridad:
+
+Kali linux
+Parrot
+Black Lab linux
+fedora linux
